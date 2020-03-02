@@ -1,0 +1,104 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "File",
+   "description": "Encodes basic information about any file",
+   "type": "object",
+   "properties": {
+      "id": {
+         "description": "A string uniquely identifying this file",
+         "type": "string"
+      },
+      "collection": {
+         "description": "A CV term describing the top-level collection containing this file (e.g. HMP, NeMO, HMBR, etc.)",
+         "$ref": "../CVs/collections.json"
+      },
+      "basename": {
+         "description": "The basename of this file, stripped of any information about containing directories",
+         "type": "string"
+      },
+      "size_in_bytes": {
+         "description": "The size of this file in bytes",
+         "type": "integer"
+      },
+      "urls": {
+         "description": "An array of URLs pointing to this file",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "format": {
+         "description": "A CV term describing the format of this file",
+         "$ref": "../CVs/file_formats.json"
+      },
+      "data_type": {
+         "description": "A CV term describing the type of data contained in this file",
+         "$ref": "../CVs/file_data_types.json"
+      },
+      "creation_date": {
+         "description": "The point in time at which this file was created",
+         "type": "string"
+      },
+      "lastmod_date": {
+         "description": "This point in time at which this file was last modified",
+         "type": "string"
+      },
+      "repo_submissions": {
+         "description": "A group of key-value pairs: each key represents a data repository to which this file was submitted, and each value gives the point in time at which this file was submitted to the corresponding repository",
+         "type": "object"
+      },
+      "comment": {
+         "description": "A generic placeholder for any text comments accompanying this file",
+         "type": "string"
+      },
+      "produced_by": {
+         "description": "The ID of the event that produced this file",
+         "type": "string"
+      },
+      "processed_by": {
+         "description": "An array of IDs of events that processed this file",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "part_of_study": {
+         "description": "An array of IDs of all studies and sub-projects to which this file belongs (EXCLUDING the top-level dataset already described by this file's 'collection' property)",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "tags": {
+         "description": "An array of descriptive strings to make this file 'taggable'",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "_search": {
+         "description": "An object containing additional (unstructured) data to enhance searching",
+         "type": "object"
+      }
+   },
+   "allOf": [
+      {
+         "if": { "properties": { "collection": { "const": "HMP" } } },
+         "then": { "$ref" : "../extensions/file/file_HMP.json" }
+      },
+      {
+         "if": { "properties": { "collection": { "const": "NeMO" } } },
+         "then": { "$ref" : "../extensions/file/file_NeMO.json" }
+      }
+   ],
+   "required": [
+      "id",
+      "collection",
+      "basename",
+      "size_in_bytes"
+   ]
+}

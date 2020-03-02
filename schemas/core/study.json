@@ -1,0 +1,72 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "Study",
+   "description": "Encodes basic information about any study, project, sub-project, etc.; that is to say any administrative grouping (or sub-grouping) of experimental data and metadata",
+   "type": "object",
+   "properties": {
+      "id": {
+         "description": "A string uniquely identifying this study",
+         "type": "string"
+      },
+      "collection": {
+         "description": "A CV term describing the top-level collection containing this study (e.g. HMP, NeMO, HMBR, etc.)",
+         "$ref": "../CVs/collections.json"
+      },
+      "study_name": {
+         "description": "A short, human-readable label for this study",
+         "type": "string"
+      },
+      "website": {
+         "description": "The URL of a website describing this study",
+         "type": "string",
+         "format": "uri"
+      },
+      "grant_IDs": {
+         "description": "An array of strings identifying all grants funding this study",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "comment": {
+         "description": "A generic placeholder for any text describing this study",
+         "type": "string"
+      },
+      "part_of_study": {
+         "description": "An array of IDs of all (larger) studies that contain this study as a sub-unit (EXCLUDING the top-level dataset already described by this study's 'collection' property)",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "tags": {
+         "description": "An array of descriptive strings to make this study 'taggable'",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "_search": {
+         "description": "An object containing additional (unstructured) data to enhance searching",
+         "type": "object"
+      }
+   }
+   "allOf": [
+      {
+         "if": { "properties": { "collection": { "const": "HMP" } } },
+         "then": { "$ref" : "../extensions/study/study_HMP.json" }
+      },
+      {
+         "if": { "properties": { "collection": { "const": "NeMO" } } },
+         "then": { "$ref" : "../extensions/study/study_NeMO.json" }
+      }
+   ],
+   "required": [
+      "id",
+      "collection",
+      "study_name"
+   ]
+}

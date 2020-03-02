@@ -1,0 +1,9 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "File_data_types_CV",
+   "description": "A controlled vocabulary (set of predetermined keywords) describing file data types, e.g. 'sequence_reads', 'raw_sequence_alignments', etc.",
+   "enum": [
+      "sequence_reads",
+      "raw_sequence_alignments"
+   ]
+}

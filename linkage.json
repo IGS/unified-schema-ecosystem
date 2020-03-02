@@ -1,0 +1,24 @@
+{
+  "*": {
+  },
+  "file": {
+      "produced_by": [ "event" ],
+      "processed_by": [ "event" ],
+      "part_of_study": [ "study" ]
+  },
+  "sample": {
+      "produced_by": [ "event" ],
+      "processed_by": [ "event" ],
+      "part_of_study": [ "study" ]
+  },
+  "event": {
+      "part_of_study": [ "study" ]
+  },
+  "subject": {
+      "processed_by": [ "event" ],
+      "part_of_study": [ "study" ]
+  },
+  "study": {
+      "part_of_study": [ "study" ]
+  }
+}

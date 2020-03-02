@@ -1,0 +1,11 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "Event_types_CV",
+   "description": "A controlled vocabulary (set of predetermined keywords) describing the processing context of experimental events, i.e. visit (a collection of phenotypic observations made about a subject during direct examination); sample-to-sample (new sample(s) or specimen(s) generated from preexisting biomaterial(s), e.g. library prep); sample-to-data (biospecimen(s) processed to produce digital files, e.g. read sequencing); or data-to-data (existing file information is processed to produce new digital products, e.g. sequence assembly)",
+   "enum": [
+      "visit",
+      "sample_to_sample",
+      "sample_to_data",
+      "data_to_data"
+   ]
+}

@@ -1,0 +1,86 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "Event",
+   "description": "Encodes basic information about any temporal event relevant to experimental workflow, e.g. clinical visit; library preparation; sequencing; assembly; generation of an abundance matrix; etc.",
+   "type": "object",
+   "properties": {
+      "id": {
+         "description": "A string uniquely identifying this event",
+         "type": "string"
+      },
+      "collection": {
+         "description": "A CV term describing the top-level collection containing this event (e.g. HMP, NeMO, HMBR, etc.)",
+         "$ref": "../CVs/collections.json"
+      },
+      "event_type": {
+         "description": "A CV term describing the type of this event: visit, sample_to_sample, sample_to_data, or data_to_data",
+         "$ref": "../CVs/event_types.json"
+      },
+      "day": {
+         "description": "A two-digit number (01-31) encoding the day of the month on which this event occurred",
+         "type": "integer"
+      },
+      "month": {
+         "description": "A two-digit number (01-12) encoding the month in which this event occurred",
+         "type": "integer"
+      },
+      "year": {
+         "description": "A four-digit number encoding the year in which this event occurred",
+         "type": "integer"
+      },
+      "comment": {
+         "description": "A generic placeholder for any text comments accompanying this event",
+         "type": "string"
+      },
+      "part_of_study": {
+         "description": "An array of IDs of all studies and sub-projects to which this event belongs (EXCLUDING the top-level dataset already described by this event's 'collection' property)",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "tags": {
+         "description": "An array of descriptive strings to make this event 'taggable'",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "_search": {
+         "description": "An object containing additional (unstructured) data to enhance searching",
+         "type": "object"
+      }
+   },
+   "allOf": [
+      {
+         "if": { "properties": { "collection": { "const": "HMP" } } },
+         "then": { "$ref" : "../extensions/event/event_HMP.json" }
+      },
+      {
+         "if": { "properties": { "collection": { "const": "NeMO" } } },
+         "then": { "$ref" : "../extensions/event/event_NeMO.json" }
+      },
+      {
+         "if": { "properties": { "event_type": { "const": "visit" } } },
+         "then": {
+            "properties": {
+               "location": {
+                  "description": "A description or label identifying the place where this clinical visit took place",
+                  "type": "string"
+               },
+               "visit_number": {
+                  "description": "A number indicating where this event occurs in the context of a series of related clinical visits",
+                  "type": "number"
+               }
+            }
+         }
+      }
+   ],
+   "required": [
+      "id",
+      "collection",
+      "event_type"
+   ]
+}

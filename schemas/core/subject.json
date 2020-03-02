@@ -1,0 +1,66 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "Subject",
+   "description": "Encodes basic information about any experimental subject organism",
+   "type": "object",
+   "properties": {
+      "id": {
+         "description": "A string uniquely identifying this subject",
+         "type": "string"
+      },
+      "collection": {
+         "description": "A CV term describing the top-level collection containing this subject (e.g. HMP, NeMO, HMBR, etc.)",
+         "$ref": "../CVs/collections.json"
+      },
+      "NCBI_taxonomy_ID": {
+         "description": "The numeric ID of a NCBI Taxonomy Database entry describing a clade to which this subject belongs",
+         "type": "integer"
+      },
+      "comment": {
+         "description": "A generic placeholder for any text comments accompanying this subject",
+         "type": "string"
+      },
+      "processed_by": {
+         "description": "An array of IDs of events that processed this subject",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "part_of_study": {
+         "description": "An array of IDs of all studies and sub-projects to which this subject belongs (EXCLUDING the top-level dataset already described by this subject's 'collection' property)",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "tags": {
+         "description": "An array of descriptive strings to make this subject 'taggable'",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "_search": {
+         "description": "An object containing additional (unstructured) data to enhance searching",
+         "type": "object"
+      }
+   }
+   "allOf": [
+      {
+         "if": { "properties": { "collection": { "const": "HMP" } } },
+         "then": { "$ref" : "../extensions/subject/subject_HMP.json" }
+      },
+      {
+         "if": { "properties": { "collection": { "const": "NeMO" } } },
+         "then": { "$ref" : "../extensions/subject/subject_NeMO.json" }
+      }
+   ],
+   "required": [
+      "id",
+      "collection"
+   ]
+}

@@ -1,0 +1,78 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "Sample",
+   "description": "Encodes basic information about any experimental sample material",
+   "type": "object",
+   "properties": {
+      "id": {
+         "description": "A string uniquely identifying this sample",
+         "type": "string"
+      },
+      "collection": {
+         "description": "A CV term describing the top-level collection containing this sample (e.g. HMP, NeMO, HMBR, etc.)",
+         "$ref": "../CVs/collections.json"
+      },
+      "sample_type": {
+         "description": "A description of the type of this sample (e.g. 'cheek swab')",
+         "type": "string"
+      },
+      "source_taxonomy": {
+         "description": "Systematic taxnomic information describing the organism(s) from which this sample was obtained",
+         "type": "string"
+      },
+      "source_anatomy_or_product": {
+         "description": "A description of the anatomical part or body product from which this sample was derived (e.g. 'front of nose', 'stool', 'saliva')",
+         "type": "string"
+      },
+      "comment": {
+         "description": "A generic placeholder for any text comments accompanying this sample",
+         "type": "string"
+      },
+      "produced_by": {
+         "description": "The ID of the event that produced this sample",
+         "type": "string"
+      },
+      "processed_by": {
+         "description": "An array of IDs of events that processed this sample",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "part_of_study": {
+         "description": "An array of IDs of all studies and sub-projects to which this sample belongs (EXCLUDING the top-level dataset already described by this sample's 'collection' property)",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "tags": {
+         "description": "An array of descriptive strings to make this sample 'taggable'",
+         "type": "array",
+         "items": {
+            "type": "string"
+         },
+         "uniqueItems": true
+      },
+      "_search": {
+         "description": "An object containing additional (unstructured) data to enhance searching",
+         "type": "object"
+      }
+   }
+   "allOf": [
+      {
+         "if": { "properties": { "collection": { "const": "HMP" } } },
+         "then": { "$ref" : "../extensions/sample/sample_HMP.json" }
+      },
+      {
+         "if": { "properties": { "collection": { "const": "NeMO" } } },
+         "then": { "$ref" : "../extensions/sample/sample_NeMO.json" }
+      }
+   ],
+   "required": [
+      "id",
+      "collection"
+   ]
+}
