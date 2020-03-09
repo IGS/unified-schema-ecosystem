@@ -48,7 +48,7 @@
          "description": "An object containing additional (unstructured) data to enhance searching",
          "type": "object"
       }
-   }
+   },
    "allOf": [
       {
          "if": { "properties": { "collection": { "const": "HMP" } } },
