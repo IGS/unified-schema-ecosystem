@@ -1,9 +1,0 @@
-{
-  "type": "object",
-  "properties": {
-    "dummy_HMP_property": {
-      "type": "string"
-    }
-  },
-  "required": ["dummy_HMP_property"]
-}

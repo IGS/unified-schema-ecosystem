@@ -1,0 +1,19 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "HMP Study",
+   "description": "Encodes basic information about any study in the HMP metadata collection",
+   "type": "object",
+   "properties": {
+      "dummy_HMP_property": {
+         "type": "string"
+      }
+   },
+   "required": [
+      "dummy_HMP_property"
+   ],
+   "allOf": [
+      {
+         "$ref": "../../../core_base_type_schemas/study_CORE.json"
+      }
+   ]
+}

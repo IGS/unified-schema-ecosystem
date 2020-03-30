@@ -1,0 +1,19 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "HMP Event",
+   "description": "Encodes basic information about any event in the HMP metadata collection",
+   "type": "object",
+   "properties": {
+      "dummy_HMP_property": {
+         "type": "string"
+      }
+   },
+   "required": [
+      "dummy_HMP_property"
+   ],
+   "allOf": [
+      {
+         "$ref": "../../../core_base_type_schemas/event_CORE.json"
+      }
+   ]
+}

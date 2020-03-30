@@ -55,14 +55,6 @@
    },
    "allOf": [
       {
-         "if": { "properties": { "collection": { "const": "HMP" } } },
-         "then": { "$ref" : "../extensions/event/event_HMP.json" }
-      },
-      {
-         "if": { "properties": { "collection": { "const": "NeMO" } } },
-         "then": { "$ref" : "../extensions/event/event_NeMO.json" }
-      },
-      {
          "if": { "properties": { "event_type": { "const": "visit" } } },
          "then": {
             "properties": {

@@ -1,0 +1,19 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "NeMO Mouse Subject",
+   "description": "Encodes basic information about any mouse subject in the NeMO metadata collection",
+   "type": "object",
+   "properties": {
+      "essential_NeMO_mouse_property": {
+         "type": "string"
+      }
+   },
+   "required": [
+      "essential_NeMO_mouse_property"
+   ],
+   "allOf": [
+      {
+         "$ref": "../../../core_subtype_schemas/mouse_subject_CORE.json"
+      }
+   ]
+}

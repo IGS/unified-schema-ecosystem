@@ -61,16 +61,6 @@
          "type": "object"
       }
    },
-   "allOf": [
-      {
-         "if": { "properties": { "collection": { "const": "HMP" } } },
-         "then": { "$ref" : "../extensions/sample/sample_HMP.json" }
-      },
-      {
-         "if": { "properties": { "collection": { "const": "NeMO" } } },
-         "then": { "$ref" : "../extensions/sample/sample_NeMO.json" }
-      }
-   ],
    "required": [
       "id",
       "collection"

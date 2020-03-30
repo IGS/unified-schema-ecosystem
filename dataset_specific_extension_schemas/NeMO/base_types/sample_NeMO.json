@@ -1,0 +1,19 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "NeMO Sample",
+   "description": "Encodes basic information about any sample in the NeMO metadata collection",
+   "type": "object",
+   "properties": {
+      "dummy_NeMO_property": {
+         "type": "string"
+      }
+   },
+   "required": [
+      "dummy_NeMO_property"
+   ],
+   "allOf": [
+      {
+         "$ref": "../../core_base_type_schemas/sample_CORE.json"
+      }
+   ]
+}

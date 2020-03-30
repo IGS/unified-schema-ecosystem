@@ -1,0 +1,24 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "Subject",
+   "description": "Encodes basic information about any experimental subject organism",
+   "type": "object",
+   "properties": {
+      "some_essential_mouse_property": {
+         "description": "A metadata property critical to the modeling of mice",
+         "type": "string"
+      },
+      "some_inessential_mouse_property": {
+         "description": "A numeric data point that'd be nice to have, but isn't essential to modeling mice",
+         "type": "integer"
+      }
+   },
+   "allOf": [
+      {
+         "$ref": "../core_base_type_schemas/subject_CORE.json"
+      }
+   ],
+   "required": [
+      "some_essential_mouse_property"
+   ]
+}

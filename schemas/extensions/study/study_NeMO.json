@@ -1,9 +1,0 @@
-{
-  "type": "object",
-  "properties": {
-    "dummy_NeMO_property": {
-      "type": "string"
-    }
-  },
-  "required": ["dummy_NeMO_property"]
-}
